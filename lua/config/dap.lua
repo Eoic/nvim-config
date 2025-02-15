@@ -11,6 +11,12 @@ dap.adapters.lldb = {
   name = "lldb",
 }
 
+dap.adapters.python = {
+  type = "executable",
+  command = "/usr/bin/python3",
+  args = { "-m", "debugpy.adapter" }
+}
+
 dap.configurations.rust = {
   {
     name = "Launch",
@@ -34,6 +40,18 @@ dap.configurations.rust = {
     cwd = "${workspaceFolder}",
     stopOnEntry = false,
     args = {},
+  },
+}
+
+dap.configurations.python = {
+  {
+    type = "python",
+    request = "launch",
+    name = "Launch file",
+    program = "${file}",
+    pythonPath = function()
+      return "/usr/bin/python3"
+    end,
   },
 }
 

@@ -9,13 +9,10 @@ return {
     version = '^5',
     lazy = false,
   },
-  {
-    "rcarriga/nvim-dap-ui",
-     dependencies = {
-         "mfussenegger/nvim-dap",
-         "nvim-neotest/nvim-nio"
-     }
-  },
+  require('plugins.telescope'),
+  require("plugins.lspconfig"),
+  require("plugins.null-ls"),
+  require("plugins.signature"),
   {
     "rcarriga/nvim-dap-ui",
     dependencies = {
@@ -26,28 +23,29 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate"
+    build = ":TSUpdate",
+    opts = {
+      ensure_installed = {"ninja", "rst"}
+    }
   },
     {
       'sainnhe/sonokai',
       lazy = false,
       priority = 1000,
       config = function()
-        -- Optionally configure and load the colorscheme
-        -- directly inside the plugin declaration.
-        vim.g.sonokai_enable_italic = true
+        vim.g.sonokai_enable_italic = false
         vim.cmd.colorscheme('sonokai')
       end
     },
   {
     "hrsh7th/nvim-cmp",
     version = false,
-    event = { "InsertEnter", "CmdlineEnter" }, -- Load in insert mode and command mode
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline", -- Command-line completion
+      "hrsh7th/cmp-cmdline",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip"
     },
