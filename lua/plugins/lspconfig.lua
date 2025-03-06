@@ -32,6 +32,11 @@ return {
       -- Attach capabilities to LSP servers
       lspconfig.pyright.setup({ capabilities = capabilities })
       lspconfig.ruff.setup({ capabilities = capabilities })
+
+      lspconfig.clangd.setup({
+        capabilities = capabilities,
+        cmd = { "clangd", "--clang-tidy" }, -- Enable clang-tidy for extra diagnostics
+      })
     end,
   }
 }
